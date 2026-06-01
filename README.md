@@ -196,3 +196,273 @@ vercel
 ## 📄 License
 
 This project is part of the Frontend Intern Challenge.
+
+## 🎬 Live Demo & Deployment
+
+**GitHub Repository**: https://github.com/rakesh32026/learning-dashboard
+
+**Live Demo**: [Deploy to Vercel when ready]
+
+---
+
+## 📖 Component Documentation
+
+### `page.js` (Server Component)
+- Fetches courses from Supabase
+- Renders main layout with sidebar
+- Passes data to child components
+
+### `AnimatedGrid.js` (Client)
+- **Purpose**: Orchestrates staggered animations
+- **Props**: children (React nodes)
+- **Animation**: `staggerChildren: 0.1`
+
+### `CourseCard.js` (Client)
+- **Props**: `course` (DB object), `index` (for stagger)
+- **Animation**: Spring physics on hover
+- **Features**: Dynamic icons, animated progress bar
+
+### `Sidebar.js` (Client)
+- **State**: `active` (current nav item), `isMobileOpen` (menu state)
+- **Features**: Desktop sidebar + mobile hamburger menu
+- **Animation**: layoutId for smooth highlight
+
+### `HeroTile.js` (Client)
+- **Features**: Welcome message, learning streak display
+- **Animation**: Text variants with cascade effect
+
+### `ActivityTile.js` (Client)
+- **Purpose**: Activity chart visualization
+- **Features**: Staggered bar animations
+
+---
+
+## 🔐 Environment Setup
+
+Create `.env.local` file (copy from `.env.example`):
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
+```
+
+**How to get credentials:**
+1. Go to [supabase.com](https://supabase.com)
+2. Create a new project
+3. Go to Settings → API
+4. Copy the URL and anon key
+
+---
+
+## 🎓 Key Learnings
+
+### Server Components Benefits
+- Data fetching happens on server (faster)
+- Environment variables stay secure
+- Reduced JavaScript bundle size
+
+### Framer Motion Best Practices
+- Use `transform` and `opacity` for animations
+- Spring physics feels more natural than linear
+- `layoutId` smoothly animates DOM reordering
+
+### Responsive Design Pattern
+```
+Desktop:  sidebar visible + 2-column grid
+Tablet:   hamburger menu + 1-column grid
+Mobile:   full-screen nav + stacked cards
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Problem: "Cannot fetch from Supabase"
+**Solution**: 
+- Check `.env.local` has correct credentials
+- Verify Supabase table exists and has data
+- Ensure network connection is active
+
+### Problem: "Animations are jittery"
+**Solution**:
+- Check animations use only `transform` and `opacity`
+- Disable browser extensions that modify DOM
+- Test in Chrome DevTools with GPU acceleration enabled
+
+### Problem: "Mobile menu won't open"
+**Solution**:
+- Clear browser cache
+- Verify Framer Motion is properly imported
+- Check `AnimatePresence` wrapper is in place
+
+---
+
+## 📚 Resources
+
+- [Next.js Docs](https://nextjs.org/docs)
+- [Supabase Docs](https://supabase.com/docs)
+- [Framer Motion Docs](https://www.framer.com/motion)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [Lucide Icons](https://lucide.dev)
+
+---
+
+## 👨‍💻 Development Tips
+
+1. **Hot Reload**: Changes automatically reflect at http://localhost:3000
+2. **Supabase Studio**: Access at https://app.supabase.com to manage data
+3. **Vercel Analytics**: Monitor performance after deployment
+4. **Chrome DevTools**: Use to test responsiveness and animations
+
+---
+
+## 📄 License & Credits
+
+This project is part of the **Frontend Intern Challenge: Next-Gen Learning Dashboard**.
+
+**Built with:**
+- Next.js 16
+- Supabase
+- Framer Motion
+- Tailwind CSS
+- Lucide React
+
+---
+
+**Last Updated**: May 31, 2026
+**Status**: ✅ Production Ready
+
+## 🎬 Live Demo & Deployment
+
+**GitHub Repository**: https://github.com/rakesh32026/learning-dashboard
+
+**Live Demo**: [Deploy to Vercel when ready]
+
+---
+
+## 📖 Component Documentation
+
+### `page.js` (Server Component)
+- Fetches courses from Supabase
+- Renders main layout with sidebar
+- Passes data to child components
+
+### `AnimatedGrid.js` (Client)
+- **Purpose**: Orchestrates staggered animations
+- **Props**: children (React nodes)
+- **Animation**: `staggerChildren: 0.1`
+
+### `CourseCard.js` (Client)
+- **Props**: `course` (DB object), `index` (for stagger)
+- **Animation**: Spring physics on hover
+- **Features**: Dynamic icons, animated progress bar
+
+### `Sidebar.js` (Client)
+- **State**: `active` (current nav item), `isMobileOpen` (menu state)
+- **Features**: Desktop sidebar + mobile hamburger menu
+- **Animation**: layoutId for smooth highlight
+
+### `HeroTile.js` (Client)
+- **Features**: Welcome message, learning streak display
+- **Animation**: Text variants with cascade effect
+
+### `ActivityTile.js` (Client)
+- **Purpose**: Activity chart visualization
+- **Features**: Staggered bar animations
+
+---
+
+## 🔐 Environment Setup
+
+Create `.env.local` file (copy from `.env.example`):
+
+```env
+NEXT_PUBLIC_SUPABASE_URL=https://your-project.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_key_here
+```
+
+**How to get credentials:**
+1. Go to [supabase.com](https://supabase.com)
+2. Create a new project
+3. Go to Settings → API
+4. Copy the URL and anon key
+
+---
+
+## 🎓 Key Learnings
+
+### Server Components Benefits
+- Data fetching happens on server (faster)
+- Environment variables stay secure
+- Reduced JavaScript bundle size
+
+### Framer Motion Best Practices
+- Use `transform` and `opacity` for animations
+- Spring physics feels more natural than linear
+- `layoutId` smoothly animates DOM reordering
+
+### Responsive Design Pattern
+```
+Desktop:  sidebar visible + 2-column grid
+Tablet:   hamburger menu + 1-column grid
+Mobile:   full-screen nav + stacked cards
+```
+
+---
+
+## 🐛 Troubleshooting
+
+### Problem: "Cannot fetch from Supabase"
+**Solution**: 
+- Check `.env.local` has correct credentials
+- Verify Supabase table exists and has data
+- Ensure network connection is active
+
+### Problem: "Animations are jittery"
+**Solution**:
+- Check animations use only `transform` and `opacity`
+- Disable browser extensions that modify DOM
+- Test in Chrome DevTools with GPU acceleration enabled
+
+### Problem: "Mobile menu won't open"
+**Solution**:
+- Clear browser cache
+- Verify Framer Motion is properly imported
+- Check `AnimatePresence` wrapper is in place
+
+---
+
+## 📚 Resources
+
+- [Next.js Docs](https://nextjs.org/docs)
+- [Supabase Docs](https://supabase.com/docs)
+- [Framer Motion Docs](https://www.framer.com/motion)
+- [Tailwind CSS Docs](https://tailwindcss.com/docs)
+- [Lucide Icons](https://lucide.dev)
+
+---
+
+## 👨‍💻 Development Tips
+
+1. **Hot Reload**: Changes automatically reflect at http://localhost:3000
+2. **Supabase Studio**: Access at https://app.supabase.com to manage data
+3. **Vercel Analytics**: Monitor performance after deployment
+4. **Chrome DevTools**: Use to test responsiveness and animations
+
+---
+
+## 📄 License & Credits
+
+This project is part of the **Frontend Intern Challenge: Next-Gen Learning Dashboard**.
+
+**Built with:**
+- Next.js 16
+- Supabase
+- Framer Motion
+- Tailwind CSS
+- Lucide React
+
+---
+
+**Last Updated**: May 31, 2026
+**Status**: ✅ Production Ready
