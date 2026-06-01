@@ -6,7 +6,7 @@ import HeroTile from "@/components/HeroTile";
 import CourseCard from "@/components/CourseCard";
 import ActivityTile from "@/components/ActivityTile";
 import AnimatedGrid from "@/components/AnimatedGrid";
-import { supabase } from "@/lib/supabase";
+import { initSupabase } from "@/lib/supabase";
 
 export default function DashboardPage() {
   const { activeTab } = useTab();
@@ -16,8 +16,8 @@ export default function DashboardPage() {
   useEffect(() => {
     async function loadCourses() {
       try {
-        const client = await supabase.from("courses");
-        const { data, error } = await client.select("*");
+        const client = await initSupabase();
+        const { data, error } = await client.from("courses").select("*");
         if (!error && data) {
           setCourses(data);
         }
