@@ -1,5 +1,6 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import Sidebar from "@/components/Sidebar";
+import { TabProvider } from "@/context/TabContext";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -24,20 +25,22 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <div className="flex flex-1 min-h-screen">
-          {/* Sidebar */}
-          <aside className="w-64 hidden lg:block">
-            <div className="sticky top-0 h-screen overflow-y-auto">
-              <Sidebar />
-            </div>
-          </aside>
+        <TabProvider>
+          <div className="flex flex-1 min-h-screen">
+            {/* Desktop Sidebar */}
+            <aside className="w-64 hidden lg:block">
+              <div className="sticky top-0 h-screen overflow-y-auto">
+                <Sidebar />
+              </div>
+            </aside>
 
-          {/* Mobile Sidebar + Main Content */}
-          <div className="flex-1 w-full">
-            <Sidebar />
-            {children}
+            {/* Mobile Sidebar + Main Content */}
+            <div className="flex-1 w-full">
+              <Sidebar />
+              {children}
+            </div>
           </div>
-        </div>
+        </TabProvider>
       </body>
     </html>
   );
