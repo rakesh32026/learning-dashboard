@@ -1,19 +1,31 @@
 "use client";
 
 import { useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { Home, BookOpen, BarChart3, Settings, Menu, X } from "lucide-react";
 
 export default function Sidebar() {
-  const [active, setActive] = useState("dashboard");
+  const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
 
   const items = [
-    { id: "dashboard", label: "Dashboard", icon: Home },
-    { id: "courses", label: "Courses", icon: BookOpen },
-    { id: "analytics", label: "Analytics", icon: BarChart3 },
-    { id: "settings", label: "Settings", icon: Settings },
+    { id: "dashboard", label: "Dashboard", icon: Home, href: "/" },
+    { id: "courses", label: "Courses", icon: BookOpen, href: "/courses" },
+    { id: "analytics", label: "Analytics", icon: BarChart3, href: "/analytics" },
+    { id: "settings", label: "Settings", icon: Settings, href: "/settings" },
   ];
+
+  const getActiveId = () => {
+    if (pathname === "/") return "dashboard";
+    if (pathname.startsWith("/courses")) return "courses";
+    if (pathname.startsWith("/analytics")) return "analytics";
+    if (pathname.startsWith("/settings")) return "settings";
+    return "dashboard";
+  };
+
+  const active = getActiveId();
 
   const sidebarVariants = {
     hidden: { x: -300 },
@@ -48,6 +60,8 @@ export default function Sidebar() {
         <ul className="space-y-3">
           {items.map((item, i) => {
             const Icon = item.icon;
+            const isActive = active === item.id;
+
             return (
               <motion.li
                 key={item.id}
@@ -55,23 +69,23 @@ export default function Sidebar() {
                 variants={itemVariants}
                 initial="hidden"
                 animate="visible"
-                layoutId={item.id}
               >
-                <motion.button
-                  onClick={() => setActive(item.id)}
-                  className="w-full flex gap-3 items-center px-3 py-2 rounded-lg text-left transition-colors relative"
-                  whileHover={{ x: 4 }}
-                >
-                  {active === item.id && (
-                    <motion.div
-                      layoutId="highlight"
-                      className="absolute inset-0 bg-blue-500/20 rounded-lg"
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    />
-                  )}
-                  <Icon size={20} className="relative z-10" aria-hidden="true" />
-                  <span className="relative z-10">{item.label}</span>
-                </motion.button>
+                <Link href={item.href}>
+                  <motion.button
+                    className="w-full flex gap-3 items-center px-3 py-2 rounded-lg text-left transition-colors relative"
+                    whileHover={{ x: 4 }}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="highlight"
+                        className="absolute inset-0 bg-blue-500/20 rounded-lg"
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      />
+                    )}
+                    <Icon size={20} className="relative z-10" aria-hidden="true" />
+                    <span className="relative z-10">{item.label}</span>
+                  </motion.button>
+                </Link>
               </motion.li>
             );
           })}
@@ -91,6 +105,8 @@ export default function Sidebar() {
             <ul className="space-y-3">
               {items.map((item, i) => {
                 const Icon = item.icon;
+                const isActive = active === item.id;
+
                 return (
                   <motion.li
                     key={item.id}
@@ -98,26 +114,24 @@ export default function Sidebar() {
                     variants={itemVariants}
                     initial="hidden"
                     animate="visible"
-                    layoutId={`mobile-${item.id}`}
                   >
-                    <motion.button
-                      onClick={() => {
-                        setActive(item.id);
-                        setIsMobileOpen(false);
-                      }}
-                      className="w-full flex gap-3 items-center px-3 py-2 rounded-lg text-left transition-colors relative"
-                      whileHover={{ x: 4 }}
-                    >
-                      {active === item.id && (
-                        <motion.div
-                          layoutId="mobile-highlight"
-                          className="absolute inset-0 bg-blue-500/20 rounded-lg"
-                          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                        />
-                      )}
-                      <Icon size={20} className="relative z-10" aria-hidden="true" />
-                      <span className="relative z-10">{item.label}</span>
-                    </motion.button>
+                    <Link href={item.href}>
+                      <motion.button
+                        onClick={() => setIsMobileOpen(false)}
+                        className="w-full flex gap-3 items-center px-3 py-2 rounded-lg text-left transition-colors relative"
+                        whileHover={{ x: 4 }}
+                      >
+                        {isActive && (
+                          <motion.div
+                            layoutId="mobile-highlight"
+                            className="absolute inset-0 bg-blue-500/20 rounded-lg"
+                            transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                          />
+                        )}
+                        <Icon size={20} className="relative z-10" aria-hidden="true" />
+                        <span className="relative z-10">{item.label}</span>
+                      </motion.button>
+                    </Link>
                   </motion.li>
                 );
               })}

@@ -1,38 +1,31 @@
-import Sidebar from "../components/Sidebar";
-import HeroTile from "../components/HeroTile";
-import CourseCard from "../components/CourseCard";
-import ActivityTile from "../components/ActivityTile";
-import AnimatedGrid from "../components/AnimatedGrid";
+import HeroTile from "@/components/HeroTile";
+import CourseCard from "@/components/CourseCard";
+import ActivityTile from "@/components/ActivityTile";
+import AnimatedGrid from "@/components/AnimatedGrid";
 
-import { getCourses } from "../lib/getCourses";
+import { getCourses } from "@/lib/getCourses";
 
-export default async function Page() {
+export default async function DashboardPage() {
   const courses = await getCourses();
 
   return (
     <main className="min-h-screen bg-black text-white p-4 sm:p-6 pt-16 lg:pt-6">
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
-        <aside className="hidden lg:block lg:col-span-1">
-          <Sidebar />
-        </aside>
+      <div className="max-w-7xl mx-auto">
+        <AnimatedGrid>
+          <div className="md:col-span-2">
+            <HeroTile />
+          </div>
 
-        <section className="col-span-1 lg:col-span-4">
-          <AnimatedGrid>
-            <div className="md:col-span-2">
-              <HeroTile />
-            </div>
+          <ActivityTile />
 
-            <ActivityTile />
-
-            {courses.map((course, index) => (
-              <CourseCard
-                key={course.id}
-                course={course}
-                index={index + 2}
-              />
-            ))}
-          </AnimatedGrid>
-        </section>
+          {courses.slice(0, 4).map((course, index) => (
+            <CourseCard
+              key={course.id}
+              course={course}
+              index={index + 2}
+            />
+          ))}
+        </AnimatedGrid>
       </div>
     </main>
   );
