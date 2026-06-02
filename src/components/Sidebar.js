@@ -40,7 +40,7 @@ export default function Sidebar() {
 
   return (
     <>
-      {/* Mobile menu button */}
+      {/* Mobile menu button - Only visible on mobile */}
       <button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
         className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-zinc-800 rounded-lg hover:bg-zinc-700"
@@ -49,8 +49,8 @@ export default function Sidebar() {
         {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Desktop Sidebar */}
-      <nav className="hidden lg:block bg-zinc-900 p-4 rounded-xl h-full border border-zinc-800">
+      {/* Desktop Sidebar - Only visible on lg screens and above */}
+      <nav className="hidden lg:block bg-zinc-900 p-4 rounded-xl h-full border border-zinc-800 overflow-y-auto">
         <ul className="space-y-3">
           {items.map((item, i) => {
             const Icon = item.icon;
@@ -85,7 +85,7 @@ export default function Sidebar() {
         </ul>
       </nav>
 
-      {/* Mobile Sidebar */}
+      {/* Mobile Sidebar - Only visible on mobile */}
       <AnimatePresence>
         {isMobileOpen && (
           <motion.nav

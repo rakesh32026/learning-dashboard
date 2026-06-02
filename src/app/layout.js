@@ -24,18 +24,17 @@ export default function RootLayout({ children }) {
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full">
         <TabProvider>
-          <div className="flex flex-1 min-h-screen">
-            {/* Desktop Sidebar */}
-            <aside className="w-64 hidden lg:block">
-              <div className="sticky top-0 h-screen overflow-y-auto">
-                <Sidebar />
-              </div>
+          <div className="flex min-h-screen">
+            {/* Desktop Sidebar - Hidden on mobile */}
+            <aside className="w-64 hidden lg:block sticky top-0 h-screen">
+              <Sidebar />
             </aside>
 
-            {/* Mobile Sidebar + Main Content */}
+            {/* Main Content with Mobile Sidebar */}
             <div className="flex-1 w-full">
+              {/* Sidebar component handles both mobile hamburger and hidden desktop nav */}
               <Sidebar />
               {children}
             </div>
