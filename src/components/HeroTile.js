@@ -3,7 +3,11 @@
 import { motion } from "framer-motion";
 import { Flame } from "lucide-react";
 
+import { useTab } from "@/context/TabContext";
+
 export default function HeroTile() {
+  const { userProfile } = useTab();
+
   const containerVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: {
@@ -34,11 +38,8 @@ export default function HeroTile() {
       <div className="absolute bottom-0 left-0 h-40 w-40 rounded-full bg-purple-500/20 blur-3xl" />
 
       <div className="relative z-10">
-        <motion.h1
-          variants={textVariants}
-          className="text-4xl font-bold text-white"
-        >
-          Welcome Back, Rakesh 👋
+        <motion.h1 variants={textVariants} className="text-4xl font-bold text-white">
+          Welcome Back, {userProfile.name} 👋
         </motion.h1>
 
         <motion.div

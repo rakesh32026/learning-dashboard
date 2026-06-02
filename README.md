@@ -4,24 +4,23 @@ A modern student dashboard built with Next.js, Supabase, Tailwind CSS, and Frame
 
 ## Features
 
-* Dynamic course fetching from Supabase
-* Responsive Bento Grid Layout
-* Animated Progress Bars
-* Dynamic Lucide Icons
-* Hover Glow Effects
-* Dark Mode UI
-* Activity Analytics Card
+- Dynamic course fetching from Supabase
+- Responsive Bento Grid Layout
+- Animated Progress Bars
+- Dynamic Lucide Icons
+- Hover Glow Effects
+- Dark Mode UI
+- Activity Analytics Card
 
 ## Tech Stack
 
-* Next.js App Router
-* Supabase
-* Tailwind CSS
-* Framer Motion
-* Lucide React
+- Next.js App Router
+- Supabase
+- Tailwind CSS
+- Framer Motion
+- Lucide React
 
 ## Setup
-
 
 1. Install dependencies
 

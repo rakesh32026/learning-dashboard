@@ -43,47 +43,49 @@ export default function Sidebar() {
       {/* Mobile menu button - Only visible on mobile */}
       <button
         onClick={() => setIsMobileOpen(!isMobileOpen)}
-        className="lg:hidden fixed top-4 left-4 z-50 p-2 bg-zinc-800 rounded-lg hover:bg-zinc-700"
+        className="md:hidden fixed top-4 left-4 z-50 p-2 bg-zinc-800 rounded-lg hover:bg-zinc-700"
         aria-label="Toggle navigation menu"
       >
         {isMobileOpen ? <X size={24} /> : <Menu size={24} />}
       </button>
 
-      {/* Desktop Sidebar - Only visible on lg screens and above */}
-      <nav className="hidden lg:block bg-zinc-900 p-4 rounded-xl h-full border border-zinc-800 overflow-y-auto">
-        <ul className="space-y-3">
-          {items.map((item, i) => {
-            const Icon = item.icon;
-            const isActive = activeTab === item.id;
+      {/* Desktop/Tablet Sidebar */}
+      <aside className="hidden md:block sticky top-0 h-screen p-4 md:w-20 lg:w-64 transition-all duration-300">
+        <nav className="bg-zinc-900 p-4 rounded-xl h-full border border-zinc-800 overflow-y-auto">
+          <ul className="space-y-3">
+            {items.map((item, i) => {
+              const Icon = item.icon;
+              const isActive = activeTab === item.id;
 
-            return (
-              <motion.li
-                key={item.id}
-                custom={i}
-                variants={itemVariants}
-                initial="hidden"
-                animate="visible"
-              >
-                <motion.button
-                  onClick={() => handleTabClick(item.id)}
-                  className="w-full flex gap-3 items-center px-3 py-2 rounded-lg text-left transition-colors relative"
-                  whileHover={{ x: 4 }}
+              return (
+                <motion.li
+                  key={item.id}
+                  custom={i}
+                  variants={itemVariants}
+                  initial="hidden"
+                  animate="visible"
                 >
-                  {isActive && (
-                    <motion.div
-                      layoutId="highlight"
-                      className="absolute inset-0 bg-blue-500/20 rounded-lg"
-                      transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                    />
-                  )}
-                  <Icon size={20} className="relative z-10" aria-hidden="true" />
-                  <span className="relative z-10">{item.label}</span>
-                </motion.button>
-              </motion.li>
-            );
-          })}
-        </ul>
-      </nav>
+                  <motion.button
+                    onClick={() => handleTabClick(item.id)}
+                    className="w-full flex items-center justify-center lg:justify-start gap-3 p-3 lg:px-3 lg:py-2 rounded-lg text-left transition-colors relative"
+                    whileHover={{ x: 4 }}
+                  >
+                    {isActive && (
+                      <motion.div
+                        layoutId="highlight"
+                        className="absolute inset-0 bg-blue-500/20 rounded-lg"
+                        transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                      />
+                    )}
+                    <Icon size={20} className="relative z-10 flex-shrink-0" aria-hidden="true" />
+                    <span className="relative z-10 hidden lg:inline">{item.label}</span>
+                  </motion.button>
+                </motion.li>
+              );
+            })}
+          </ul>
+        </nav>
+      </aside>
 
       {/* Mobile Sidebar - Only visible on mobile */}
       <AnimatePresence>
@@ -93,7 +95,7 @@ export default function Sidebar() {
             initial="hidden"
             animate="visible"
             exit="hidden"
-            className="fixed left-0 top-16 bottom-0 w-64 bg-zinc-900 border-r border-zinc-800 p-4 z-40 lg:hidden"
+            className="fixed left-0 top-16 bottom-0 w-64 bg-zinc-900 border-r border-zinc-800 p-4 z-40 md:hidden"
           >
             <ul className="space-y-3">
               {items.map((item, i) => {

@@ -1,12 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import {
-  Code,
-  Rocket,
-  Book,
-  Sparkles,
-} from "lucide-react";
+import { Code, Rocket, Book, Sparkles } from "lucide-react";
 
 export default function CourseCard({ course, index = 0 }) {
   const icons = {
@@ -50,15 +45,15 @@ export default function CourseCard({ course, index = 0 }) {
       role="article"
       tabIndex={0}
     >
-      <div className="absolute top-0 right-0 h-24 w-24 bg-blue-500/10 blur-3xl rounded-full" />
+      {/* Abstract Gradient Mesh */}
+      <div className="absolute -top-10 -right-10 h-32 w-32 bg-blue-500/15 blur-3xl rounded-full" />
+      <div className="absolute -bottom-10 -left-10 h-32 w-32 bg-purple-500/10 blur-3xl rounded-full" />
       <div className="relative z-10">
         <div className="mb-4 text-blue-400">
           <Icon size={32} aria-hidden="true" />
         </div>
 
-        <h2 className="font-semibold text-lg">
-          {course.title}
-        </h2>
+        <h2 className="font-semibold text-lg">{course.title}</h2>
 
         <div className="mt-4 w-full bg-zinc-700 h-3 rounded-full overflow-hidden">
           <motion.div
@@ -77,9 +72,7 @@ export default function CourseCard({ course, index = 0 }) {
           />
         </div>
 
-        <p className="mt-3 text-zinc-300">
-          {course.progress}%
-        </p>
+        <p className="mt-3 text-zinc-300">{course.progress}%</p>
       </div>
     </motion.article>
   );

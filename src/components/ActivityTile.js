@@ -39,9 +39,7 @@ export default function ActivityTile() {
       role="region"
       aria-label="Activity chart"
     >
-      <h2 className="mb-6 text-xl font-semibold">
-        Activity
-      </h2>
+      <h2 className="mb-6 text-xl font-semibold">Activity</h2>
 
       <div className="flex items-end gap-3 h-36">
         {bars.map((height, index) => (

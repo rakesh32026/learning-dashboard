@@ -6,9 +6,15 @@ const TabContext = createContext();
 
 export function TabProvider({ children }) {
   const [activeTab, setActiveTab] = useState("dashboard");
+  const [userProfile, setUserProfile] = useState({
+    name: "Rakesh",
+    dailyGoal: 2,
+    emailReminders: true,
+    publicProfile: false,
+  });
 
   return (
-    <TabContext.Provider value={{ activeTab, setActiveTab }}>
+    <TabContext.Provider value={{ activeTab, setActiveTab, userProfile, setUserProfile }}>
       {children}
     </TabContext.Provider>
   );
